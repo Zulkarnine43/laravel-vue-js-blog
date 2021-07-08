@@ -9,7 +9,7 @@
 
                             <div class="card-tools">
                                 <button class="btn btn-primary">
-                                    <!-- <router-link to="/add-post" style="color:#fff"> Add New Post</router-link> -->
+                                    <router-link to="/add-post" style="color:#fff"> Add New Post</router-link>
                                 </button>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                                 <tr>
 
                                     <th>Sl</th>
-                                    <th>User</th>
+                                    <!-- <th>User</th> -->
                                     <th>Category</th>
                                     <th>Title</th>
                                     <th>Description</th>
@@ -32,16 +32,16 @@
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <td></td>
-                                    <td> </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td> alt="" width="40" height="50"></td>
+                                <tr v-for="(post,index) in postItem" :key="index">
+                                    <td>{{index+1}}</td>
+                                    <!-- <td >{{post.user.name}}</td> -->
+                                    <td >{{post.cat_id}}</td>
+                                    <td>{{post.title}}</td>
+                                    <td>{{post.description}}</td>
+                                    <td><img :src="post.photo" alt="" width="40" height="50"></td>
                                     <td>
-                                        <router-link>Edit</router-link>
-                                        <a >Delete</a>
+                                        <router-link :to="`edit-post/${post.id}`">Edit</router-link>
+                                        <a href="" @click.prevent = "deletePost(post.id)" >Delete</a>
 
                                     </td>
                                 </tr>
@@ -64,7 +64,29 @@
 
 <script>
     export default {
-      
+          data(){
+            return{
+                postItem:[],
+            }
+        },
+       mounted(){
+            axios.get('http://localhost/blog/public/api/post')
+                .then(res =>{
+                    this.postItem=res.data;
+                })
+                .catch(err => console.log(err));
+        },
+        methods:{
+            deletePost(id){
+               axios.delete('http://localhost/blog/public/api/delete/'+id)
+                   .then(()=>{
+                       alert('are you sure');
+                    //    this.$router.push('/post-list');
+                   }).catch((err)=>{
+                         console.log(err);
+                   })
+            }
+        }
     }
 </script>
 

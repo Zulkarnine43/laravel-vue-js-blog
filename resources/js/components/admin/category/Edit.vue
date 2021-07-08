@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
     export default {
       data(){
        return{
@@ -57,6 +58,13 @@
                 axios.post('http://localhost/blog/public/api/update-category/'+this.$route.params.categoryid,this.categoryItem)
                     .then((response)=>{
                         this.$router.push('/category-list')
+                        Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been update',
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
                     })
                     .catch(()=>{
                         console.log(err)
