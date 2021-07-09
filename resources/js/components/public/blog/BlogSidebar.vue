@@ -41,26 +41,24 @@
         name: "BlogSidebar",
         data(){
            return {
-               categories:[],
+              categories:[],
                blogposts:[],
                keyword:'',
            }
         },
-   mounted(){
-    
-            axios.get('http://localhost/blog/public/api/categories')
-                .then(res =>{
-                    this.categories=res.data;
-                })
-                .catch(err => console.log(err));
-      
-             
+         mounted(){
+           axios.get('http://localhost/blog/public/api/categories')
+            .then(res =>{
+          //  console.log(res.data);
+             this.categories=res.data;
+            })
+            .catch(err => console.log(err));
+
             axios.get('http://localhost/blog/public/api/latestpost')
                 .then(res =>{
                     this.blogposts=res.data;
                 })
                 .catch(err => console.log(err));
-        
         },
  
         methods:{

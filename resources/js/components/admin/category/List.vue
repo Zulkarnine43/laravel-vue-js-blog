@@ -28,7 +28,7 @@
                                 </thead>
                                 <tbody>
 
-                                <tr v-for="(category,index) in categoryItem" :key="index">
+                                <tr v-for="(category,index) in getallCategory" :key="index">
                                    
                                     <td>{{index+1}}</td>
                                     <td>{{category.cat_name}}</td>
@@ -57,17 +57,13 @@
 
 <script>
     export default {
-        data(){
-            return{
-                categoryItem:[],
-            }
+        mounted(){
+            this.$store.dispatch("allCategory")
         },
-       mounted(){
-            axios.get('http://localhost/blog/public/api/category')
-                .then(res =>{
-                    this.categoryItem=res.data;
-                })
-                .catch(err => console.log(err));
+        computed:{
+           getallCategory(){
+            return this.$store.getters.getCategory
+           }
         },
         methods:{
             deletecategory(id){

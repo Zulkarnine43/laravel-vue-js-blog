@@ -6,7 +6,9 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+
 import {routes} from './routes';
+import {store} from './components/store/index';
 
 const router = new VueRouter({
   routes, // short for `routes: routes`
@@ -19,6 +21,7 @@ Vue.component('home-main', require('./components/public/PublicMaster.vue').defau
 
 
 const app = new Vue({
-     router,
+    router,
     el: '#app', 
+    store,
 });

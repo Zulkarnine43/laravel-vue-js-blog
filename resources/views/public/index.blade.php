@@ -224,7 +224,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <router-link to="/blog">Blog </router-link>
+                                            <router-link to="/blog" href="">Blog </router-link>
                                         </li>
                                         <li>
                                             <a href="contact.html">Contact </a>
