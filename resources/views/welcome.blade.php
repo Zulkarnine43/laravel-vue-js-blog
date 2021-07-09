@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 3 | Blank Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset("assets/admin/css/")}}/app.css" rel="stylesheet" />
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -88,7 +88,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
+    <footer class="main-footer fixed-bottom">
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 1.0
         </div>

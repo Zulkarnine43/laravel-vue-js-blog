@@ -15,9 +15,10 @@ const router = new VueRouter({
 
 // Vue.component('example-component', require('./components/products.vue').default);
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue').default);
+Vue.component('home-main', require('./components/public/PublicMaster.vue').default);
 
 
 const app = new Vue({
-    el: '#app',
-    router,
+     router,
+    el: '#app', 
 });

@@ -9,49 +9,34 @@ use App\Post;
 class BlogController extends Controller
 {
     public function  get_all_blog_post(){
-        $posts = Post::with('user','category')->orderBy('id','desc')->get();
-        return response()->json([
-            'posts'=>$posts
-        ],200);
+       return $posts = Post::all();
     }
     public function getpost_by_id($id){
-        $post = Post::with('user','category')->where('id',$id)->first();
-        return response()->json([
-            'post'=>$post
-        ],200);
+      return $post = Post::where('id',$id)->first();
+
     }
     public function get_all_category(){
         $categories = Category::all();
-        return response()->json([
-            'categories'=>$categories
-        ],200);
+        return $categories;
     }
     public function get_all_post_by_cat_id($id){
-        $posts = Post::with('user','category')->where('cat_id',$id)->orderBy('id','desc')->get();
-        return response()->json([
-            'posts'=>$posts
-        ],200);
+        $posts = Post::where('cat_id',$id)->get();
+        return $posts;
     }
     public function search_post(){
-
         $search = \Request::get('s');
         if($search!=null){
-            $posts = Post::with('user','category')
+            $posts = Post::orderBy('id', 'DESC')
                 ->where('title','LIKE',"%$search%")
                 ->orWhere('description','LIKE',"%$search%")
                 ->get();
-            return response()->json([
-                'posts'=>$posts
-            ],200);
+            return $posts;
         }else{
            return $this->get_all_blog_post();
         }
-
     }
     public function latest_post(){
-        $posts = Post::with('user','category')->orderBy('id','desc')->get();
-        return response()->json([
-            'posts'=>$posts
-        ],200);
+        $posts = Post::all();
+        return $posts;
     }
 }
